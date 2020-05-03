@@ -30,6 +30,7 @@ This is the best way for AES encryption and decryption an class object in C#. He
 ```
         // Encryption and decryption key (i.e., secret key for the symmetric algorithm)
         private readonly static byte[] Key = Convert.FromBase64String("AsISxq9OwdZag1163OJqwovXfSWG98m+sPjVwJecfe4=");
+        
         // initialization vector
         private readonly static byte[] IV = Convert.FromBase64String("Aq0UThtJhjbuyWXtmZs1rw==");
 ```
@@ -48,8 +49,10 @@ class Program
         static void Main(string[] args)
         {
             Profile = new Profile();
+            
             // Enter file name.
             string fileName = "D:\\Profile.txt";
+            
             Profile.Name = "Ramesh";
             Profile.Password = "Password";
             Console.WriteLine("Enter your option:");
@@ -61,10 +64,13 @@ class Program
             {
                 // Create new file using filestream.
                 FileStream fsWrite = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                
                 // Convert class object into string.
                 string serializeProfile = Newtonsoft.Json.JsonConvert.SerializeObject(Profile);
+                
                 // Encrypt profile class object.
                 Profile.ProfileData = EncryptStringToBytes(serializeProfile);
+                
                 // Write encrypt values into filestream.
                 fsWrite.Write(Profile.ProfileData, 0, Profile.ProfileData.Length);
                 fsWrite.Close();
@@ -73,13 +79,17 @@ class Program
             {
                 // Read existing encryption file.
                 FileStream fsRead = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                
                 // Convert filestream into byte[]
                 BinaryReader br = new BinaryReader(fsRead);
                 long numBytes = new FileInfo(fileName).Length;
+                
                 // Get decrypt string from byte[]. 
                 string decryptedText = DecryptStringFromBytes(br.ReadBytes((int)numBytes));
+                
                 // Convert string into class oject.
                 Profile DeserializeProfile = Newtonsoft.Json.JsonConvert.DeserializeObject<Profile>(decryptedText);
+                
                 Console.WriteLine("Name :" + DeserializeProfile.Name);
                 Console.WriteLine("Password :" + DeserializeProfile.Password);
                 Console.ReadKey();
