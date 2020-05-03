@@ -6,6 +6,7 @@ This is the best way for AES encryption and decryption an class object in C#. He
 
 ```
     // Create new class 
+    
     public class Profile
     {
         [JsonPropertyName("name")]
@@ -22,9 +23,9 @@ This is the best way for AES encryption and decryption an class object in C#. He
     }
 ```
 
-2. **AES KEY** used the secret key for the symmetric algorithm. This is secret key, is something you keep secret. Anyone who knows your key (or can guess it) can decrypt any data you've encrypted with it (or forge any authentication codes you've calculated with it, etc.).
+2. **AES KEY**[https://en.wikipedia.org/wiki/AES_key_schedule] used the secret key for the symmetric algorithm. This is secret key, is something you keep secret. Anyone who knows your key (or can guess it) can decrypt any data you've encrypted with it (or forge any authentication codes you've calculated with it, etc.).
 
-3. **AES IV** used as initialization vector (IV) for the symmetric algorithm. Initialization vector is, in its broadest sense, just the initial value used to start some iterated process. So you can maintain in your code itself.
+3. **AES IV**[https://en.wikipedia.org/wiki/Initialization_vector] used as initialization vector (IV) for the symmetric algorithm. Initialization vector is, in its broadest sense, just the initial value used to start some iterated process. So you can maintain in your code itself.
 
 ```
         // Encryption and decryption key (i.e., secret key for the symmetric algorithm)
